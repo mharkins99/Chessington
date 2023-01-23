@@ -12,6 +12,7 @@ describe('Pawn', () => {
 
     describe('white pawns', () => {
         
+        
         it('can only move one square up if they have already moved', () => {
             const pawn = new Pawn(Player.WHITE);
             board.setPiece(Square.at(1, 0), pawn);
@@ -68,13 +69,12 @@ describe('Pawn', () => {
         const blockingPiece = new Rook(Player.WHITE);
         board.setPiece(Square.at(6, 3), pawn);
         board.setPiece(Square.at(5, 3), blockingPiece);
-
         const moves = pawn.getAvailableMoves(board);
 
         moves.should.be.empty;
     });
 
-    it('cannot move two squares if there is a piece two sqaures in front', () => {
+    it('cannot move two squares if there is a piece two squares in front', () => {
         const pawn = new Pawn(Player.BLACK);
         const blockingPiece = new Rook(Player.WHITE);
         board.setPiece(Square.at(6, 3), pawn);
