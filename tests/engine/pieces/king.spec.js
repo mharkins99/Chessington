@@ -1,4 +1,10 @@
+import 'chai/register-should';
+import Bishop from '../../../src/engine/pieces/bishop';
+import Pawn from '../../../src/engine/pieces/pawn';
+import Player from '../../../src/engine/player';
 import King from '../../../src/engine/pieces/king';
+import Square from '../../../src/engine/square';
+import Board from '../../../src/engine/board';
 
 describe('King', () => {
 
@@ -10,7 +16,7 @@ describe('King', () => {
         board.setPiece(Square.at(3, 4), king);
 
         const moves = king.getAvailableMoves(board);
-
+        console.log(moves)
         const expectedMoves = [
             Square.at(2, 3), Square.at(2, 4), Square.at(2, 5), Square.at(3, 5),
             Square.at(4, 5), Square.at(4, 4), Square.at(4, 3), Square.at(3, 3)
