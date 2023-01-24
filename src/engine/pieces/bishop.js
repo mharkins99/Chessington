@@ -1,6 +1,7 @@
 import Piece from './piece';
 import Square from '../square';
 import Player from '../player';
+import King from './king';
 
 export default class Bishop extends Piece {
     constructor(player) {
