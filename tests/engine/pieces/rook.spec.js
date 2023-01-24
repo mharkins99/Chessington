@@ -15,6 +15,10 @@ describe('Rook', () => {
         const rook = new Rook(Player.WHITE);
         board.setPiece(Square.at(1, 2), rook);
 
+       // let testObject = board.getPiece(Square.at(1,2));
+       //console.log(testObject.player);
+        //console.log(Object.keys(testObject));
+
         const moves = rook.getAvailableMoves(board);
 
         const expectedMoves = [
@@ -62,8 +66,14 @@ describe('Rook', () => {
         const opposingPiece = new Pawn(Player.BLACK);
         board.setPiece(Square.at(4, 4), rook);
         board.setPiece(Square.at(4, 6), opposingPiece);
+        
+       /*let testObject = board.getPiece(Square.at(4,6));
+       console.log(testObject.player);
+        console.log(Object.values(testObject.player));
+        */
 
         const moves = rook.getAvailableMoves(board);
+        //console.log(moves);
 
         moves.should.deep.include(Square.at(4, 6));
     });
