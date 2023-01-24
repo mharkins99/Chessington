@@ -18,14 +18,39 @@ export default class Rook extends Piece {
     getAvailableMoves(board) {
         let location = board.findPiece(this)
         const moves = []
-        for (let i = 0; i <= 7; i++) {
-            // while getPiece === undefined push the move
-            //while(board.getPiece(Square.at ====== unfinished
-        if (location.col !==i) moves.push(Square.at(location.row, i))
-            }  
-        for (let i = 0; i <= 7; i++) {
-        if (location.row !==i) moves.push(Square.at(i, location.col)) 
+        for (let i = location.col + 1; i <= 7; i++) {
+            if (board.getPiece(Square.at(location.row, i)) === undefined) {
+                moves.push(Square.at(location.row, i))
+            } else {
+                break
+            }
         }
+
+        for (let i = location.col - 1; i >= 0; i--) {
+            if (board.getPiece(Square.at(location.row, i)) === undefined) {
+                moves.push(Square.at(location.row, i))
+            } else {
+                break
+            }
+        }
+
+        for (let i = location.row + 1; i <= 7; i++) {
+            if (board.getPiece(Square.at(i, location.col)) === undefined) {
+                moves.push(Square.at(i, location.col))
+            } else {
+                break
+            }
+        }
+
+        for (let i = location.row - 1; i >= 0; i--) {
+            if (board.getPiece(Square.at(i, location.col)) === undefined) {
+                moves.push(Square.at(i, location.col))
+            } else {
+                break
+            }
+        }
+        //board.getPiece(Square.at(location.row,i);
+        //board.getPiece(Square.at(i, location.column);
         return moves
     }
 }
