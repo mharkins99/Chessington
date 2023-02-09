@@ -13,30 +13,33 @@ export default class Bishop extends Piece {
         const moves = []
         let rowCountRight = location.row + 1;
         let rowCountLeft = location.row - 1;
-        for (let i = location.col + 1; i <= 7; i++) {
-            if (board.getPiece(Square.at(rowCountRight, i)) === undefined) {
-                    moves.push(Square.at(rowCountRight, i))
-                    rowCountRight++
-                    if (rowCountRight === 8) { break }
-            
+        function moveRight(row, col) {
+            if (board.getPiece(Square.at(row, col)) === undefined) {
+                moves.push(Square.at(row, col))
+                if (row === 8) { return moves }
+
             }
-            else if (board.getPiece(Square.at(rowCountRight, i)) instanceof King === true) { break }
-            else if (board.getPiece(Square.at(rowCountRight, i)).player === Player.BLACK) {
-                moves.push(Square.at(rowCountRight, i))
-                break
+            else if (board.getPiece(Square.at(row, col)) instanceof King === true) { return moves}
+            else if (board.getPiece(Square.at(row, col)).player === Player.BLACK) {
+                moves.push(Square.at(row, col))
+                return moves
             } else {
-                break
+                return moves
             }
         }
-         rowCountRight = location.row + 1;
-         rowCountLeft = location.row - 1;
+        for (let i = location.col + 1; i <= 7; i++) {
+            moveRight(rowCountRight, i)
+            rowCountRight ++
+        }
+        rowCountRight = location.row + 1;
+        rowCountLeft = location.row - 1;
         for (let i = location.col + 1; i <= 7; i++) {
             if (board.getPiece(Square.at(rowCountLeft, i)) === undefined) {
-                    moves.push(Square.at(rowCountLeft, i))
-                    rowCountLeft--
-                    if (rowCountLeft === -1) { break }
-                }
-            
+                moves.push(Square.at(rowCountLeft, i))
+                rowCountLeft--
+                if (rowCountLeft === -1) { break }
+            }
+
             else if (board.getPiece(Square.at(rowCountLeft, i)) instanceof King === true) { break }
             else if (board.getPiece(Square.at(rowCountLeft, i)).player === Player.BLACK) {
                 moves.push(Square.at(rowCountLeft, i))
@@ -49,10 +52,10 @@ export default class Bishop extends Piece {
         rowCountLeft = location.row - 1;
         for (let i = location.col - 1; i >= 0; i--) {
             if (board.getPiece(Square.at(rowCountRight, i)) === undefined) {
-                    moves.push(Square.at(rowCountRight, i))
-                    rowCountRight++
-                    if (rowCountRight === 8) { break }
-                }
+                moves.push(Square.at(rowCountRight, i))
+                rowCountRight++
+                if (rowCountRight === 8) { break }
+            }
             else if (board.getPiece(Square.at(rowCountRight, i)) instanceof King === true) { break }
             else if (board.getPiece(Square.at(rowCountRight, i)).player === Player.BLACK) {
                 moves.push(Square.at(rowCountRight, i))
@@ -65,9 +68,9 @@ export default class Bishop extends Piece {
         rowCountLeft = location.row - 1;
         for (let i = location.col - 1; i >= 0; i--) {
             if (board.getPiece(Square.at(rowCountLeft, i)) === undefined) {
-                    moves.push(Square.at(rowCountLeft, i))
-                    rowCountLeft--
-                    if (rowCountLeft === -1) { break }
+                moves.push(Square.at(rowCountLeft, i))
+                rowCountLeft--
+                if (rowCountLeft === -1) { break }
             }
             else if (board.getPiece(Square.at(rowCountLeft, i)) instanceof King === true) { break }
             else if (board.getPiece(Square.at(rowCountLeft, i)).player === Player.BLACK) {
@@ -76,7 +79,8 @@ export default class Bishop extends Piece {
             } else {
                 break
             }
-        }
+                }
+                
         return moves;
     }
 }
